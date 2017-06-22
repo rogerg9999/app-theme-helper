@@ -338,9 +338,11 @@ public final class ToolbarContentTintHelper {
                     decorView.findViewsWithText(outViews, overflowDescription,
                             View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
                     if (outViews.isEmpty()) return;
-                    final AppCompatImageView overflow = (AppCompatImageView) outViews.get(0);
-                    overflow.setImageDrawable(TintHelper.createTintedDrawable(overflow.getDrawable(), color));
-                    ViewUtil.removeOnGlobalLayoutListener(decorView, this);
+                    if(outViews.get(0) instanceof AppCompatImageView){
+                        final AppCompatImageView overflow = (AppCompatImageView) outViews.get(0);
+                        overflow.setImageDrawable(TintHelper.createTintedDrawable(overflow.getDrawable(), color));
+                        ViewUtil.removeOnGlobalLayoutListener(decorView, this);
+                    }
                 }
             });
         }
